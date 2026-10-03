@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Pertemuan 4 JavaScript</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Sistem Manajemen Transportasi</h2>
+    <h3>Daftar Pelanggan yang Menyewa Kendaraan</h3>
+
+    <div id="dataPelanggan"></div>
+
+    <script>
+        class Pelanggan {
+            constructor(nama, nomorTelepon) {
+                this.nama = nama;
+                this.nomorTelepon = nomorTelepon;
+                this.kendaraanDisewa = "-";
+            }
+
+            sewaKendaraan(kendaraan) {
+                this.kendaraanDisewa = kendaraan;
+            }
+        }
+
+        let pelanggan1 = new Pelanggan("Erlangga Abidin", "081234567890");
+        let pelanggan2 = new Pelanggan("Alif Padilah", "082345678901");
+
+        pelanggan1.sewaKendaraan("Delman");
+        pelanggan2.sewaKendaraan("Becak");
+
+        let daftarPelanggan = [
+            pelanggan1,
+            pelanggan2
+        ];
+
+        function tampilkanPelanggan() {
+            let hasil = `
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Nomor Telepon</th>
+                        <th>Kendaraan Disewa</th>
+                    </tr>
+            `;
+
+            daftarPelanggan.forEach(function(pelanggan, index) {
+                hasil += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${pelanggan.nama}</td>
+                        <td>${pelanggan.nomorTelepon}</td>
+                        <td>${pelanggan.kendaraanDisewa}</td>
+                    </tr>
+                `;
+            });
+
+            hasil += `</table>`;
+
+            document.getElementById("dataPelanggan").innerHTML = hasil;
+        }
+
+        tampilkanPelanggan();
+    </script>
+
+</body>
+</html>
